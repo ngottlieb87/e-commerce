@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   helper_method :is_admin?
-
+  helper_method :current_order
 
   def current_user
     if session[:user_id]
@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
     if !current_user.admin
       flash[:alert] = 'You are not an Admin!'
       redirect_to projects_path
+    end
+  end
+
+  def current_order
+    if session[:order_id]
+      Order.find(session[:order_id])
+    else
+      Order.new
     end
   end
 end
