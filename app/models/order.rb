@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
-  # belongs_to :account
+  belongs_to :account
   has_many :order_items
-  has_many :products
+  # has_many :products
   # validates :total_price, presence: true
   # validates :status, presence: true
 

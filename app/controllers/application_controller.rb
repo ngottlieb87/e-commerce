@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :is_admin?
   helper_method :current_order
+  # helper_method :existing_order
 
   def current_user
     if session[:user_id]
@@ -36,3 +37,13 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
+# def existing_order
+#   if current_user
+#     @account = Account.find(current_user.id)
+#     if Order.where(account_id: @account.id)
+#     else
+#       Order.new
+#     end
+#   end
+# end
