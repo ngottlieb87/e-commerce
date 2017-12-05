@@ -1,4 +1,9 @@
 <h1><%= @product.name %></h1>
+<% if @product.photo_file_name %>
+  <%= image_tag @product.photo(:medium) %>
+<% else %>
+  <%= image_tag @product.image_url %>
+<% end %>
 <h7> Holy Smokes! Look at that price:</h7> <h5> <%= number_to_currency @product.price %></h5>
 <%= form_for @order_item do |f| %>
 <%= f.hidden_field :product_id, value: @product.id %>

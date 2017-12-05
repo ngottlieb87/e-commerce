@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authorize, only: [:show]
-  before_action :authorize_admin, only: [:new, :create, :show]
+  before_action :authorize_admin, only: [:new, :create]
   def index
     @products = Product.all
     @order_item = current_order.order_items.new
@@ -28,6 +28,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :photo)
   end
 end

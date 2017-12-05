@@ -15,8 +15,13 @@ end
 
 100.times do |index|
   var_price = Faker::Commerce.price
-  Product.create!(name: Faker::Commerce.product_name,
-                  price: var_price)
+  # var_photo = URI.parse(Faker::LoremPixel.image)
+  product = Product.new(name: Faker::Commerce.product_name,
+                  price: var_price,
+                  description: Faker::Hipster.sentence)
+  word = product.name.split
+  product.image_url = "https://loremflickr.com/320/240/#{word[2]}/?lock=1"
+  product.save!
 end
 
 # 50.times do |index|
