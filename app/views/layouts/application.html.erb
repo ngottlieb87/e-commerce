@@ -10,16 +10,32 @@
 
   <body>
     <div class='container'>
-      <% if current_user %>
-        <%= current_user.email %> | <%= link_to "Sign out", '/signout', id: "signout" %>
-      <% else %>
-        <%= link_to "Sign up", 'signup' %> | <%= link_to "Sign in", '/signin', id: "signin" %>
-      <% end %>
+      <div class="row">
+        <div class="col-md-5">
+          <% if current_user %>
+            <%= current_user.email %> | <%= link_to "Sign out", '/signout', id: "signout" %>
+          <% else %>
+            <%= link_to "Sign up", 'signup' %> | <%= link_to "Sign in", '/signin', id: "signin" %>
+          <% end %>
 
-      <%= flash[:alert] %>
-      <%= flash[:notice] %>
-      <br>
-      <%= yield %>
+          <%= flash[:alert] %>
+          <%= flash[:notice] %>
+          <br>
+          <%= yield %>
+        </div>
+        <div class="col-md-5">
+          <%= current_user.name %>'s Cart
+
+          <% if !current_order.id === nil %>
+            <% current_order.order_items.each do |item| %>
+              <%= item.product.name %>
+              <%= item.product.price %>
+            <% end %>
+          <% end %>
+          <h3>Total:</h3>
+          <%= number_to_currency current_order.total_price %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

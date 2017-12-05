@@ -3,7 +3,7 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
     @item = @order.order_items.new(item_params)
-    @order.save
+    @order.save!
     session[:order_id] = @order.id
     redirect_to products_path
   end
@@ -17,6 +17,10 @@ class OrderItemsController < ApplicationController
  end
 
   private
+
+  # def order_prarams
+  #   params.require(:order).permit(:status, :total_price)
+  # end
 
   def item_params
     params.require(:order_item).permit(:quantity, :product_id)
