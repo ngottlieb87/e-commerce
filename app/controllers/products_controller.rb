@@ -7,13 +7,13 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.find(params[:id])
+    @product = Product.new
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice]= "Product Created!"
+      flash[:notice] = "Product Created!"
       redirect_to products_path
     else
       render :new
@@ -28,6 +28,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).require(:name, :price)
+    params.require(:product).permit(:name, :price)
   end
 end

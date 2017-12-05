@@ -1,8 +1,11 @@
-<%= render :object => @product %>
-
 <%= form_for @product do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :price %>
-<%= f.number_field :price %>
-<%= f.submit %>
+<div class= "card">
+  <div class= "card-body form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => "form-control" %>
+    <%= f.label :price %>
+    <%= f.number_field :price, :class => "form-control" %>
+    <%= f.submit %>
+    <% end %>
+  </div>
+</div>
