@@ -1,7 +1,9 @@
 <h2>Grondo's Bazaar</h2>
 <hr>
+<% if is_admin? %>
+<%= link_to "Add New Product", new_product_path(@product)%>
+<%end%>
 <% @products.each do |product| %>
 <h3> <%= link_to product.name, product_path(product) %> </h3>
 <h5>Price<%= number_to_currency product.price %></h5>
 <% end %>
-<%= link_to "cart", cart_path %>
