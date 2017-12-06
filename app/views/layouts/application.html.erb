@@ -12,11 +12,14 @@
     <div class='container'>
       <div class="row">
         <div class="col-md-5">
-          <% if current_user %>
-          <%= link_to "Home", products_path %>  | <%= current_user.email %> | <%= link_to "Sign out", '/signout', id: "signout" %> | <%= link_to image_tag("shopping-cart.png", size: "26x20", alt: "Cart"), cart_path %>
-          <% else %>
-            <%= link_to "Sign up", '/signup', id: "sign_up", remote: true %> | <%= link_to "Sign in", '/signin', id: "signin" %>
-          <% end %>
+          <div class="log_links">
+
+            <% if current_user %>
+            <%= link_to "Home", products_path %>  | <%= current_user.email %> | <%= link_to "Sign out", '/signout', id: "signout" %> | <%= link_to image_tag("shopping-cart.png", size: "26x20", alt: "Cart"), cart_path %>
+            <% else %>
+              <%= link_to "Sign up", '/signup', id: 'sign_up_link', remote: true %> | <%= link_to "Sign in", '/signin', id: "signin" %>
+            <% end %>
+          </div>
 
           <%= flash[:alert] %>
           <%= flash[:notice] %>
@@ -24,7 +27,7 @@
           <%= yield %>
         </div>
         <div class="col-md-5">
-
+          <span id="sign_up"></span>
         </div>
       </div>
     </div>
