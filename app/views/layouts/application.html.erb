@@ -15,7 +15,7 @@
           <div class="log_links">
 
             <% if current_user %>
-            <%= link_to "Home", products_path %>  | <%= current_user.email %> | <%= link_to "Sign out", '/signout', id: "signout" %> | <%= link_to image_tag("shopping-cart.png", size: "26x20", alt: "Cart"), cart_path %>
+            <%= link_to "Home", products_path %>  | <%= current_user.email %> | <%= link_to "Sign out", '/signout', id: "signout" %> | <%= link_to image_tag("shopping-cart.png", size: "26x20", alt: "Cart"), cart_path, remote: true %>
             <% else %>
               <%= link_to "Sign up", '/signup', id: 'sign_up_link', remote: true %> | <%= link_to "Sign in", '/signin', remote: true %>
             <% end %>
@@ -37,6 +37,10 @@
         <div class="col-md-5">
           <span id="sign_up"></span>
           <span id="sign_in"></span>
+          <span id="product_show"></span>
+        </div>
+        <div class="col-md-2">
+          <span id="cart_show"></span>
         </div>
       </div>
     </div>

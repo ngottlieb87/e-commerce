@@ -11,6 +11,6 @@
     <%= image_tag product.image_url %>
   <% end %>
 </div>
-<h3> <%= link_to product.name, product_path(product) %> </h3>
+<h3> <%= link_to product.name, product_path(product), remote: true %> </h3>
 <h5>Price <%= number_to_currency product.price %></h5>
 <% end %>
