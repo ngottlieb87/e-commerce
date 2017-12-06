@@ -20,9 +20,17 @@
               <%= link_to "Sign up", '/signup', id: 'sign_up_link', remote: true %> | <%= link_to "Sign in", '/signin', remote: true %>
             <% end %>
           </div>
-
-          <%= flash[:alert] %>
-          <%= flash[:notice] %>
+          <div id="flash">
+            <%= flash[:alert] %>
+            <%= flash[:notice] %>
+          </div>
+          <script type="text/javascript">
+          $(document).ready(function(){
+            setTimeout(function(){
+              $('#flash').fadeOut();
+            }, 5000);
+          })
+          </script>
           <br>
           <%= yield %>
         </div>
