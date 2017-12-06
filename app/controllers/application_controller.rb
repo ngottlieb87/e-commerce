@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     if !current_user
-      flash[:alert] = 'Please Sign in Comment'
+      flash[:alert] = 'Please Sign In To View Product'
       redirect_to products_path
     end
   end
