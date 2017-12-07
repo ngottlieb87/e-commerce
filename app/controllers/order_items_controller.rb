@@ -8,13 +8,21 @@ class OrderItemsController < ApplicationController
       @item.update(:quantity => quan)
       @order.save
       session[:order_id] = @order.id
-      redirect_to products_path
+      # redirect_to products_path
+      respond_to do |format|
+        format.html { redirect_to '/' }
+        format.js { render "carts/show" }
+      end
     else
       @item = @order.order_items.new(item_params)
       @order.account_id = current_user.id
       @order.save
       session[:order_id] = @order.id
-      redirect_to products_path
+      # redirect_to products_path
+      respond_to do |format|
+        format.html { redirect_to '/' }
+        format.js { render "carts/show" }
+      end
     end
   end
 
