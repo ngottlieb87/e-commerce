@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy'
 
   resource :cart, only: [:show]
-
+  resources :charges
   resources :accounts do
     resources :orders
   end

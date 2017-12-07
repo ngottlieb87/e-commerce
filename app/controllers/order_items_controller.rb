@@ -8,35 +8,34 @@ class OrderItemsController < ApplicationController
       @item.update(:quantity => quan)
       @order.save
       session[:order_id] = @order.id
-      # redirect_to products_path
-      respond_to do |format|
-        format.html { redirect_to '/' }
-        format.js
-      end
+      redirect_to products_path
+      # respond_to do |format|
+      #   format.html { redirect_to '/' }
+      #   format.js
+      # end
     else
       @item = @order.order_items.new(item_params)
       @order.account_id = current_user.id
       @order.save
       session[:order_id] = @order.id
-      # redirect_to products_path
-      respond_to do |format|
-        format.html { redirect_to '/' }
-        format.js
-      end
+      redirect_to products_path
+      # respond_to do |format|
+      #   format.html { redirect_to '/' }
+      #   format.js
+      # end
     end
   end
 
   def destroy
     @order = current_order
-
     @item = @order.order_items.find(params[:id])
-        binding.pry
     @item.destroy
     @order.save
-    respond_to do |format|
-      format.html { redirect_to '/' }
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to '/' }
+    #   format.js
+    # end
+    redirect_to '/'
   end
 
   private

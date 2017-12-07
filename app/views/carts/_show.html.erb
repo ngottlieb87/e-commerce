@@ -1,35 +1,45 @@
 <div class= "card">
   <div class ="card-body">
   <h3>Current Order</h3>
+  <hr>
   <% if @order_items.any? %>
     <% @order_items.each do |item| %>
-      <p><%= item.product.name %> | <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete", remote: true} %></p>
-      <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %> | Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
+
+      <p> <strong><%= item.quantity %></strong> <%= item.product.name %> <%= number_to_currency item.product.price %> </p>
+
 
       <% if item.product.photo_file_name %>
         <%= image_tag item.product.photo(:cart) %>
       <% else %>
         <%= image_tag item.product.image_url, class: "cart_size" %>
       <% end %>
+      <p> <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete" } %></p>
       <hr>
     <% end %>
     <p>Your Total: <%= number_to_currency current_order.total_price %></p>
+    <button class="btn btn-warning"><%= link_to "Checkout", new_charge_path %></button>
   <% else %>
     <p>Your shopping cart is empty.</p>
   <% end %>
-
+  </div>
+</div>
+  <br>
+  <div class= "card">
+    <div class ="card-body">
   <h3>Open Orders</h3>
+  <hr>
   <% if @open_orders.any? %>
     <% @open_orders.each do |order| %>
       <% order.order_items.each do |item| %>
-        <%= item.product.name %>  | <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete", remote: true } %></p>
-        <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %> | Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
+      <p> <strong><%= item.quantity %></strong> <%= item.product.name %> <%= number_to_currency item.product.price %> </p>
+
 
         <% if item.product.photo_file_name %>
           <%= image_tag item.product.photo(:cart) %>
         <% else %>
           <%= image_tag item.product.image_url, class: "cart_size" %>
         <% end %>
+        <p> <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete" } %></p>
         <hr>
       <% end %>
     <% end %>
