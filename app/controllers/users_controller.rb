@@ -12,10 +12,6 @@ class UsersController < ApplicationController
       account.user_id = @user.id
       account.save
       redirect_to products_path
-      # respond_to do |format|
-      #   format.html { redirect_to '/' }
-      #   format.js
-      # end
     else
       flash[:alert] = "There was a problem signing up."
       redirect_to '/'

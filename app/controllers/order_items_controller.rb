@@ -11,7 +11,7 @@ class OrderItemsController < ApplicationController
       # redirect_to products_path
       respond_to do |format|
         format.html { redirect_to '/' }
-        format.js { render "carts/show" }
+        format.js
       end
     else
       @item = @order.order_items.new(item_params)
@@ -21,17 +21,22 @@ class OrderItemsController < ApplicationController
       # redirect_to products_path
       respond_to do |format|
         format.html { redirect_to '/' }
-        format.js { render "carts/show" }
+        format.js
       end
     end
   end
 
   def destroy
     @order = current_order
+
     @item = @order.order_items.find(params[:id])
+        binding.pry
     @item.destroy
     @order.save
-    redirect_to '/'
+    respond_to do |format|
+      format.html { redirect_to '/' }
+      format.js
+    end
   end
 
   private
