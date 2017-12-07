@@ -1,41 +1,46 @@
 class OrderItemsController < ApplicationController
 
   def create
+    @order_items = current_order.order_items
+    @account = Account.find(current_user.id)
+    @open_orders = @account.orders
     @order = current_order
     if @order.order_items.exists?(:product_id => item_params[:product_id])
       @item = @order.order_items.where(:product_id => item_params[:product_id])
       quan = @item.first.quantity += item_params[:quantity].to_i
       @item.update(:quantity => quan)
-      @order.save
+      @order.save!
       session[:order_id] = @order.id
-      redirect_to products_path
-      # respond_to do |format|
-      #   format.html { redirect_to '/' }
-      #   format.js
-      # end
+      # redirect_to products_path
+      respond_to do |format|
+        format.html { redirect_to '/' }
+        format.js
+      end
     else
       @item = @order.order_items.new(item_params)
       @order.account_id = current_user.id
       @order.save
       session[:order_id] = @order.id
-      redirect_to products_path
-      # respond_to do |format|
-      #   format.html { redirect_to '/' }
-      #   format.js
-      # end
+      # redirect_to products_path
+      respond_to do |format|
+        format.html { redirect_to '/' }
+        format.js
+      end
     end
   end
 
   def destroy
+    @order_items = current_order.order_items
+    @account = Account.find(current_user.id)
+    @open_orders = @account.orders
     @order = current_order
     @item = @order.order_items.find(params[:id])
     @item.destroy
     @order.save
-    # respond_to do |format|
-    #   format.html { redirect_to '/' }
-    #   format.js
-    # end
-    redirect_to '/'
+    respond_to do |format|
+      format.html { redirect_to '/' }
+      format.js
+    end
   end
 
   private
