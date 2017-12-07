@@ -31,10 +31,14 @@
 }
 
 
-// #stayingPut{
-//   position: relative;
-// }
-//
-// #stayPut{
-//   position: fixed;
-// }
+#stayingPut{
+  position: relative;
+}
+
+#stayPut{
+  top: 0;
+  bottom:0;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  position: fixed;
+}
