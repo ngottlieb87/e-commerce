@@ -15,7 +15,9 @@
  */
  @import "bootstrap";
 
-
+body{
+  background-color: #D7BEA8,
+}
 .cart_size {
   width: 100%;
 }
@@ -29,22 +31,28 @@
 // .scroll {
 //   position: relative;
 // }
-
+.cart-color{
+  background-color: #4B88A2;
+}
 
 #stayingPut{
   position: relative;
 }
 
 #stayPut{
+
   top: 0;
   bottom:0;
   overflow-y:scroll;
   overflow-x:hidden;
   position: fixed;
+  margin-top: 26px;
+
 }
 
 #displayColumn{
-  margin-top: 100px;
+  margin-top: 38px;
+
 }
 // #productDiv{
 //   position: relative;

@@ -1,4 +1,5 @@
 <h1><%= @product.name %></h1>
+<hr>
 <% if @product.photo_file_name %>
   <%= image_tag @product.photo(:medium) %>
 <% else %>
