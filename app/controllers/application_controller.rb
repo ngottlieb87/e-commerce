@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    if session[:order_id]
+    if session[:order_id] && Order.find(session[:order_id]).status != "paid"
       Order.find(session[:order_id])
     else
       Order.new

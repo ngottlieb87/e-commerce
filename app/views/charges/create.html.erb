@@ -1,3 +1,4 @@
 <h2>Thanks, you paid <strong>$<%=@amount%></strong>!</h2>
-
+<% current_order.update(status: "paid") %>
+<% current_order = Order.new %>
 <h4><%= link_to "Return to Shopping", products_path %> </h4>
